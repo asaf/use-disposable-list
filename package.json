@@ -16,6 +16,10 @@
   "files": [
     "lib"
   ],
+  "peerDependencies": {
+    "react": ">=17.0.1",
+    "react-dom": ">=17.0.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@changesets/cli": "^2.16.0",

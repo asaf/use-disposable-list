@@ -1,2 +1,4 @@
 node_modules
 lib
+storybook-static
+build-storybook.log

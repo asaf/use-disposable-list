@@ -1,18 +1,12 @@
 import React from "react";
 import useDisposableList from "../src/disposableList";
-import { NotificationDef } from "../src/types";
 import { argsDefs } from "./helper";
 import { Story, Meta } from "@storybook/react/types-6-0";
 import { DemoProps } from "./unstyled.stories";
+import { NotificationsDef, NotificationDef } from "./unstyled.stories";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
-}
-
-interface NotificationsDef {
-  id: string;
-  show: boolean;
-  details?: NotificationDef;
 }
 
 function Notifications({

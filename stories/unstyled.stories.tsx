@@ -1,15 +1,15 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react/types-6-0";
 import useDisposableList from "../src/disposableList";
-import { NotificationDef } from "../src/types";
 import { argsDefs } from "./helper";
 
-export interface DemoProps {
-  timeout: number;
-  hideDuration: number;
+export interface NotificationDef {
+  message: string;
+  description?: string;
+  level: "info" | "error";
 }
 
-interface NotificationsDef {
+export interface NotificationsDef {
   id: string;
   show: boolean;
   details?: NotificationDef;
@@ -46,6 +46,11 @@ function Notifications({
       ))}
     </div>
   );
+}
+
+export interface DemoProps {
+  timeout: number;
+  hideDuration: number;
 }
 
 const Demo = ({

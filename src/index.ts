@@ -1,3 +1,3 @@
 import useDisposableList from "./disposableList";
 
-export { useDisposableList };
+export default useDisposableList;

@@ -1,6 +1,6 @@
 {
   "name": "use-disposable-list",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Asaf Shakarzy <asaf@crossid.io>",
   "description": "A react hook to create a disposable list.",
   "main": "lib/index.js",

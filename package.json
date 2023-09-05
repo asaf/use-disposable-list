@@ -1,12 +1,12 @@
 {
   "name": "use-disposable-list",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
-    "dist/*.{js,ts,map}"
+    "dist/*/*.{js,ts,map}"
   ],
   "scripts": {
     "build": "rollup -m -c --bundleConfigAsCjs --environment NODE_ENV:production",

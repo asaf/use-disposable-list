@@ -1,3 +1,3 @@
-import useDisposableList from "./disposableList";
+import useDisposableList from './disposableList'
 
-export default useDisposableList;
+export default useDisposableList

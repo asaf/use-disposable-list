@@ -1,0 +1,77 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>use-disposable-list demo</title>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="use-disposable-list.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      const App = () => {
+        const useDisposableList = ReactUseDisposableList;
+        const [notifs, addNotif, removeNotif] = useDisposableList({
+          hideDuration: 0,
+          timeout: 2000,
+        });
+
+        return (
+          <div className="App">
+            <h1>use-disposable-list</h1>
+            <div>
+              <div style={{ paddingBottom: "20px" }}>
+                <button
+                  onClick={() =>
+                    addNotif({
+                      message: "Hello",
+                      level: "info",
+                      description: "World",
+                    })
+                  }
+                >
+                  info
+                </button>
+                <button
+                  onClick={() =>
+                    addNotif({
+                      message: "Oh no",
+                      level: "error",
+                      description: "Something bad happened",
+                    })
+                  }
+                >
+                  error
+                </button>
+              </div>
+              {notifs.map(({ id, show, details = { level: "info" } }) => (
+                <div key={id}>
+                  <span>{details.message}</span>
+                  <button
+                    onClick={() => removeNotif(id)}
+                    style={{ marginLeft: "3px" }}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      };
+
+      const container = document.getElementById("app");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

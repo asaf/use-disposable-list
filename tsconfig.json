@@ -1,15 +1,24 @@
 {
-  "include": [
-      "./src/**/*"
-  ],
   "compilerOptions": {
-      "strict": true,
-      "esModuleInterop": true,
-      "outDir": "lib",
-      "lib": [
-          "dom",
-          "es2015"
-      ],
-      "jsx": "react"
-  }
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "jsx": "react",
+    "module": "ESNext",
+    "declaration": true,
+    "declarationDir": "types",
+    "sourceMap": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "emitDeclarationOnly": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["dom", "es2022"]
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx"
+  ]
 }

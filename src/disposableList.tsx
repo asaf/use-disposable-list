@@ -3,16 +3,16 @@ import { match } from './utils'
 import { Expand } from './utils'
 
 // ItemDef defines an item in a list.
-export interface ItemDef {
+export interface ItemDef<T> {
   id: string
   show: boolean
-  details: Record<string, any>
+  details: T
 }
 
 // StateDefinition is the reducer state.
-interface StateDefinition {
+interface StateDefinition<T> {
   // items: { id: string; show: boolean }[]
-  items: ItemDef[]
+  items: ItemDef<T>[]
 }
 
 enum ActionTypes {
@@ -24,12 +24,12 @@ enum ActionTypes {
 export interface DetailsType extends Record<string, any> {}
 
 type Actions =
-  | Expand<{ type: ActionTypes.AddItem } & ItemDef>
-  | { type: ActionTypes.RemoveItem; id: ItemDef['id'] }
-  | { type: ActionTypes.HideItem; id: ItemDef['id'] }
+  | Expand<{ type: ActionTypes.AddItem } & ItemDef<any>>
+  | { type: ActionTypes.RemoveItem; id: ItemDef<any>['id'] }
+  | { type: ActionTypes.HideItem; id: ItemDef<any>['id'] }
 
 let reducers: {
-  [P in ActionTypes]: (state: StateDefinition, action: Extract<Actions, { type: P }>) => StateDefinition
+  [P in ActionTypes]: (state: StateDefinition<any>, action: Extract<Actions, { type: P }>) => StateDefinition<any>
 } = {
   [ActionTypes.AddItem]: (state, action) => ({
     ...state,
@@ -53,7 +53,7 @@ let reducers: {
   },
 }
 
-function stateReducer(state: StateDefinition, action: Actions) {
+function stateReducer(state: StateDefinition<any>, action: Actions) {
   return match(action.type, reducers, state, action)
 }
 
@@ -82,7 +82,7 @@ const hideThenRemove = (
 const HIDE_DURATION_DEFAULT = 300
 
 // useDisposableList is the actual exported hook
-export default function useDisposableList<E extends Record<string, any>>(
+export default function useDisposableList<E>(
   { timeout, hideDuration = HIDE_DURATION_DEFAULT }: { timeout: number; hideDuration?: number } = {
     timeout: 5000,
     hideDuration: HIDE_DURATION_DEFAULT,
@@ -90,7 +90,7 @@ export default function useDisposableList<E extends Record<string, any>>(
 ) {
   let [reducerBag, dispatch] = useReducer(stateReducer, {
     items: [],
-  } as StateDefinition)
+  } as StateDefinition<E>)
 
   const removeItem = (id: string) => {
     dispatch({ type: ActionTypes.RemoveItem, id })

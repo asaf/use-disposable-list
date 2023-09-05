@@ -3,7 +3,7 @@ import { match } from './utils'
 import { Expand } from './utils'
 
 // ItemDef defines an item in a list.
-interface ItemDef {
+export interface ItemDef {
   id: string
   show: boolean
   details: Record<string, any>
@@ -11,7 +11,8 @@ interface ItemDef {
 
 // StateDefinition is the reducer state.
 interface StateDefinition {
-  items: { id: string; show: boolean }[]
+  // items: { id: string; show: boolean }[]
+  items: ItemDef[]
 }
 
 enum ActionTypes {
@@ -19,6 +20,8 @@ enum ActionTypes {
   HideItem,
   RemoveItem,
 }
+
+export interface DetailsType extends Record<string, any> {}
 
 type Actions =
   | Expand<{ type: ActionTypes.AddItem } & ItemDef>
